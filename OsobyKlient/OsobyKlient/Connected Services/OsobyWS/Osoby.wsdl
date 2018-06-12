@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://OsobyApp/WebService/Osoby/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://OsobyApp/WebService/Osoby/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://OsobyApp/WebService/Osoby/">
+      <s:element name="ListaOsobPelna">
+        <s:complexType />
+      </s:element>
+      <s:element name="ListaOsobPelnaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListaOsobPelnaResult" type="tns:ArrayOfOsoba" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfOsoba">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Osoba" nillable="true" type="tns:Osoba" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Osoba">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="OsobaId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Imie" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nazwisko" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ListaOsob">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ilosc" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListaOsobResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListaOsobResult" type="tns:ArrayOfOsoba" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListaOsobFiltr">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="start" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ilosc" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListaOsobFiltrResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListaOsobFiltrResult" type="tns:ArrayOfOsoba" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WyszukajOsobe">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="osobaId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WyszukajOsobeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WyszukajOsobeResult" type="tns:Osoba" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DodajOsobe">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="imie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nazwisko" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DodajOsobeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DodajOsobeResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UsunOsobe">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="osobaId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UsunOsobeResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="EdytujOsobe">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="osobaId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="noweImie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="noweNazwisko" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EdytujOsobeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EdytujOsobeResult" type="tns:Osoba" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ListaOsobPelnaSoapIn">
+    <wsdl:part name="parameters" element="tns:ListaOsobPelna" />
+  </wsdl:message>
+  <wsdl:message name="ListaOsobPelnaSoapOut">
+    <wsdl:part name="parameters" element="tns:ListaOsobPelnaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListaOsobSoapIn">
+    <wsdl:part name="parameters" element="tns:ListaOsob" />
+  </wsdl:message>
+  <wsdl:message name="ListaOsobSoapOut">
+    <wsdl:part name="parameters" element="tns:ListaOsobResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListaOsobFiltrSoapIn">
+    <wsdl:part name="parameters" element="tns:ListaOsobFiltr" />
+  </wsdl:message>
+  <wsdl:message name="ListaOsobFiltrSoapOut">
+    <wsdl:part name="parameters" element="tns:ListaOsobFiltrResponse" />
+  </wsdl:message>
+  <wsdl:message name="WyszukajOsobeSoapIn">
+    <wsdl:part name="parameters" element="tns:WyszukajOsobe" />
+  </wsdl:message>
+  <wsdl:message name="WyszukajOsobeSoapOut">
+    <wsdl:part name="parameters" element="tns:WyszukajOsobeResponse" />
+  </wsdl:message>
+  <wsdl:message name="DodajOsobeSoapIn">
+    <wsdl:part name="parameters" element="tns:DodajOsobe" />
+  </wsdl:message>
+  <wsdl:message name="DodajOsobeSoapOut">
+    <wsdl:part name="parameters" element="tns:DodajOsobeResponse" />
+  </wsdl:message>
+  <wsdl:message name="UsunOsobeSoapIn">
+    <wsdl:part name="parameters" element="tns:UsunOsobe" />
+  </wsdl:message>
+  <wsdl:message name="UsunOsobeSoapOut">
+    <wsdl:part name="parameters" element="tns:UsunOsobeResponse" />
+  </wsdl:message>
+  <wsdl:message name="EdytujOsobeSoapIn">
+    <wsdl:part name="parameters" element="tns:EdytujOsobe" />
+  </wsdl:message>
+  <wsdl:message name="EdytujOsobeSoapOut">
+    <wsdl:part name="parameters" element="tns:EdytujOsobeResponse" />
+  </wsdl:message>
+  <wsdl:portType name="OsobySoap">
+    <wsdl:operation name="ListaOsobPelna">
+      <wsdl:input message="tns:ListaOsobPelnaSoapIn" />
+      <wsdl:output message="tns:ListaOsobPelnaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListaOsob">
+      <wsdl:input message="tns:ListaOsobSoapIn" />
+      <wsdl:output message="tns:ListaOsobSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListaOsobFiltr">
+      <wsdl:input message="tns:ListaOsobFiltrSoapIn" />
+      <wsdl:output message="tns:ListaOsobFiltrSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WyszukajOsobe">
+      <wsdl:input message="tns:WyszukajOsobeSoapIn" />
+      <wsdl:output message="tns:WyszukajOsobeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DodajOsobe">
+      <wsdl:input message="tns:DodajOsobeSoapIn" />
+      <wsdl:output message="tns:DodajOsobeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UsunOsobe">
+      <wsdl:input message="tns:UsunOsobeSoapIn" />
+      <wsdl:output message="tns:UsunOsobeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EdytujOsobe">
+      <wsdl:input message="tns:EdytujOsobeSoapIn" />
+      <wsdl:output message="tns:EdytujOsobeSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="OsobySoap" type="tns:OsobySoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ListaOsobPelna">
+      <soap:operation soapAction="http://OsobyApp/WebService/Osoby/ListaOsobPelna" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaOsob">
+      <soap:operation soapAction="http://OsobyApp/WebService/Osoby/ListaOsob" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaOsobFiltr">
+      <soap:operation soapAction="http://OsobyApp/WebService/Osoby/ListaOsobFiltr" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WyszukajOsobe">
+      <soap:operation soapAction="http://OsobyApp/WebService/Osoby/WyszukajOsobe" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DodajOsobe">
+      <soap:operation soapAction="http://OsobyApp/WebService/Osoby/DodajOsobe" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UsunOsobe">
+      <soap:operation soapAction="http://OsobyApp/WebService/Osoby/UsunOsobe" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EdytujOsobe">
+      <soap:operation soapAction="http://OsobyApp/WebService/Osoby/EdytujOsobe" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="OsobySoap12" type="tns:OsobySoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ListaOsobPelna">
+      <soap12:operation soapAction="http://OsobyApp/WebService/Osoby/ListaOsobPelna" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaOsob">
+      <soap12:operation soapAction="http://OsobyApp/WebService/Osoby/ListaOsob" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaOsobFiltr">
+      <soap12:operation soapAction="http://OsobyApp/WebService/Osoby/ListaOsobFiltr" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WyszukajOsobe">
+      <soap12:operation soapAction="http://OsobyApp/WebService/Osoby/WyszukajOsobe" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DodajOsobe">
+      <soap12:operation soapAction="http://OsobyApp/WebService/Osoby/DodajOsobe" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UsunOsobe">
+      <soap12:operation soapAction="http://OsobyApp/WebService/Osoby/UsunOsobe" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EdytujOsobe">
+      <soap12:operation soapAction="http://OsobyApp/WebService/Osoby/EdytujOsobe" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Osoby">
+    <wsdl:port name="OsobySoap" binding="tns:OsobySoap">
+      <soap:address location="http://localhost:61547/WebService/Osoby.asmx" />
+    </wsdl:port>
+    <wsdl:port name="OsobySoap12" binding="tns:OsobySoap12">
+      <soap12:address location="http://localhost:61547/WebService/Osoby.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
