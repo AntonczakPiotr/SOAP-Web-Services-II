@@ -1,5 +1,9 @@
 OsobyApp/packages/
 OsobyApp/OsobyApp/bin/
 OsobyApp/OsobyApp/obj/
+OsobyApp/.vs/
+
+OsobyKlient/OsobyKlient/Connected Services/
 OsobyKlient/OsobyKlient/bin/
 OsobyKlient/OsobyKlient/obj/
+OsobyKlient/.vs/
